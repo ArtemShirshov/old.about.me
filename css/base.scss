@@ -1,0 +1,95 @@
+@import "normalize";
+@import "variables";
+
+html {
+    font-size: 10px;
+}
+
+body {
+    font-family: var(--font-family-default);
+    font-size: 1.5rem;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-weight: var(--font-weight-normal);
+    -webkit-text-size-adjust: none;
+    width: 100%; /* fix body width oversize when zEmbed open chat */
+}
+
+.no-scroll {
+    overflow: hidden;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+ul,
+ol,
+menu {
+    margin: 0;
+    padding: 0;
+}
+
+ul,
+ol {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+input,
+button,
+select,
+textarea {
+    background-color: transparent;
+    border: 0;
+    box-sizing: border-box;
+    font: inherit;
+    font-size: 100%;
+    margin: 0;
+    min-width: 0;
+    outline: none;
+    outline-offset: 0;
+    padding: 0;
+    vertical-align: middle;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5 {
+    margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-weight: var(--font-weight-normal);
+}
+
+hr {
+    border: none;
+    margin: 0 auto;
+    padding: 0;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.globalMainWrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.globalContentWrapper {
+    flex: 1;
+}

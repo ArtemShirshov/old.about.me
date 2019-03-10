@@ -1,0 +1,48 @@
+@import "base";
+
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    min-height: 100%;
+}
+
+body {
+    font-family: var(--font-family-default);
+    font-size: 16px;
+    min-width: 768px;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none outside none;
+    margin: 0;
+    padding-left: 0;
+}
+
+p {
+    margin: 0;
+}
+
+#react-root {
+    min-height: 100%;
+
+    & > [data-reactroot] {
+        min-height: 100%;
+    }
+
+    & > div {
+        min-height: 100%;
+    }
+}
+
+.text-hidden {
+    overflow: hidden;
+    text-indent: -9999px;
+}

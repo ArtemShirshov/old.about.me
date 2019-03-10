@@ -1,0 +1,29 @@
+:local {
+    .header {
+        display: flex;
+        height: 50px;
+        background: #008ec9;
+        box-sizing: border-box;
+    }
+
+    .logo {
+        padding: 15px 10px;
+        font-weight: 700;
+        color: white;
+    }
+
+    .menu {
+        display: flex;
+    }
+
+    .link {
+        display: block;
+        padding: 15px;
+        height: 100%;
+        color: white;
+
+        &:hover {
+            background: #0074ae;
+        }
+    }
+}
