@@ -6,7 +6,11 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const path = require('path');
 
+const packageObj = require('./package');
 const loaders = require('./webpack/loaders');
+
+const vendorPackageList = Object.keys(packageObj.dependencies);
+const webpackDevServer = `webpack-dev-server/client?http://localhost:3000`;
 
 module.exports = {
     mode: 'development',
@@ -50,25 +54,11 @@ module.exports = {
     entry: {
         'bundle.min': [
             'react-hot-loader/patch',
-            'webpack-dev-server/client?http://localhost:3000',
+            webpackDevServer,
             'webpack/hot/only-dev-server',
             './modules/index',
         ],
-        'vendor.bundle': [
-            'react',
-            'react-dom',
-            'redux',
-            'react-redux',
-            'redux-axios-middleware',
-            'axios',
-            'react-animate-height',
-            'react-slick',
-            'react-sticky',
-            'jsonp',
-            'rc-dialog',
-            'rc-tooltip',
-            'redux-saga'
-        ],
+        'vendor.bundle': vendorPackageList,
     },
     output: {
         path: path.join(__dirname, 'src'),
@@ -76,5 +66,8 @@ module.exports = {
         filename: '[name].js',
         publicPath: '/src/',
         sourceMapFilename: '[name]-[contenthash].min.js.map',
+    },
+    node: {
+        fs: 'empty',
     },
 };

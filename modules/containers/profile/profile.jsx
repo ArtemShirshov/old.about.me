@@ -2,12 +2,11 @@
 import React, {PureComponent, type Node} from 'react';
 import {connect} from 'react-redux';
 
-import {fetchPostData} from 'reducers/post/post'
+import {fetchPostData} from 'reducers/post/post';
 
-import s from './profile.scss'
+import s from './profile.scss';
 
-type PropsType = {
-};
+type PropsType = {};
 
 /**
  * Main container for home page
@@ -15,32 +14,27 @@ type PropsType = {
  * @return {Node} - Element
  */
 export class Profile extends PureComponent<PropsType> {
-    componentDidMount() {
-        this.props.fetchPostData();
-    }
+  componentDidMount() {
+    this.props.fetchPostData();
+  }
 
-    /**
-     * Render jsx to html
-     *
-     * @returns {Node} Rendered react component
-     */
-    render(): Node {
-        return (
-            <div className={s.wrap}>
-                Profile
-            </div>
-        );
-    }
+  /**
+   * Render jsx to html
+   *
+   * @returns {Node} Rendered react component
+   */
+  render(): Node {
+    return <div className={s.wrap}>Profile</div>;
+  }
 }
 
-export const mapStateToProps = (store: ApplicationStoreType) => ({
-});
+export const mapStateToProps = (store: ApplicationStoreType) => ({});
 
 export const mapDispatchToProps = {
-    fetchPostData
+  fetchPostData,
 };
 
 export const ProfileConnected = connect(
-    mapStateToProps,
-    mapDispatchToProps,
+  mapStateToProps,
+  mapDispatchToProps,
 )(Profile);

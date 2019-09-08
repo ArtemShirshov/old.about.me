@@ -1,1 +1,7 @@
-export {defaultState, setComment, setDeals, setFace, recordForm} from './recordForm';
+export {
+  defaultState,
+  setComment,
+  setDeals,
+  setFace,
+  recordForm,
+} from './recordForm';

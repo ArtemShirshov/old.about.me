@@ -9,60 +9,60 @@ configure({adapter: new Adapter()});
 
 jest.mock('react-redux', () => ({connect: jest.fn(() => () => {})}));
 jest.mock('@reach/router', () => ({
-    Router: 'Router',
-    Match: 'Match',
+  Router: 'Router',
+  Match: 'Match',
 }));
 jest.mock('containers/dynamicPage/dynamicPage', () => ({
-    DynamicPageConnected: 'DynamicPageConnected',
+  DynamicPageConnected: 'DynamicPageConnected',
 }));
 jest.mock('constants/routes/routes', () => ({
-    StaticRoutes: [
-        {
-            path: '/',
-            page: 'home',
-            component: 'HomeConnected',
-        },
-    ],
+  StaticRoutes: [
+    {
+      path: '/',
+      page: 'home',
+      component: 'HomeConnected',
+    },
+  ],
 }));
 
 let props;
 let wrapper;
 
 beforeEach(() => {
-    props = {
-        setPage: jest.fn(),
-    };
+  props = {
+    setPage: jest.fn(),
+  };
 
-    wrapper = shallow(<PagesRouter {...props} />);
-    props.setPage.mockClear();
+  wrapper = shallow(<PagesRouter {...props} />);
+  props.setPage.mockClear();
 });
 
 describe('<PagesRouter /> component', () => {
-    test('connect', () => {
-        expect(connect).toHaveBeenCalledWith(null, mapDispatchToProps);
-    });
+  test('connect', () => {
+    expect(connect).toHaveBeenCalledWith(null, mapDispatchToProps);
+  });
 
-    test('componentDidCatch method should set state hasError', () => {
-        expect(wrapper.state().hasError).toBe(false);
+  test('componentDidCatch method should set state hasError', () => {
+    expect(wrapper.state().hasError).toBe(false);
 
-        wrapper.instance().componentDidCatch({error: 'test'}, {errorInfo: 'test2'});
+    wrapper.instance().componentDidCatch({error: 'test'}, {errorInfo: 'test2'});
 
-        expect(wrapper.state().hasError).toBe(true);
-    });
+    expect(wrapper.state().hasError).toBe(true);
+  });
 
-    test('setPage method should call "setPage" action', () => {
-        expect(props.setPage).not.toBeCalled();
-        wrapper.instance().setPage('test', {id: '1000'});
-        expect(props.setPage).toBeCalledWith({page: 'test', params: {id: '1000'}});
-    });
+  test('setPage method should call "setPage" action', () => {
+    expect(props.setPage).not.toBeCalled();
+    wrapper.instance().setPage('test', {id: '1000'});
+    expect(props.setPage).toBeCalledWith({page: 'test', params: {id: '1000'}});
+  });
 
-    test('Match component children should call "setPage" method', () => {
-        wrapper.instance().setPage = jest.fn();
-        expect(wrapper.instance().setPage).not.toBeCalled();
-        wrapper
-            .find('Match')
-            .props('children')
-            .children({match: {id: '1000'}});
-        expect(wrapper.instance().setPage).toBeCalledWith('home', {id: '1000'});
-    });
+  test('Match component children should call "setPage" method', () => {
+    wrapper.instance().setPage = jest.fn();
+    expect(wrapper.instance().setPage).not.toBeCalled();
+    wrapper
+      .find('Match')
+      .props('children')
+      .children({match: {id: '1000'}});
+    expect(wrapper.instance().setPage).toBeCalledWith('home', {id: '1000'});
+  });
 });

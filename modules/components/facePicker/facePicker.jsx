@@ -16,51 +16,50 @@ type PropsType = {};
  * @return {Node} - Element
  */
 export class FacePicker extends PureComponent<PropsType> {
-    setFace = event => {
-        const {id} = event.currentTarget.dataset;
+  setFace = event => {
+    const {id} = event.currentTarget.dataset;
 
-        this.props.setFace(Number(id));
-    };
+    this.props.setFace(Number(id));
+  };
 
-    /**
-     * Render jsx to html
-     *
-     * @returns {Node} Rendered react component
-     */
-    render(): Node {
-        const {faceId} = this.props.recordForm;
+  /**
+   * Render jsx to html
+   *
+   * @returns {Node} Rendered react component
+   */
+  render(): Node {
+    const {faceId} = this.props.recordForm;
 
-        return (
-            <div className={s.wrap}>
-                <div className={s.label}>How is your mood?</div>
+    return (
+      <div className={s.wrap}>
+        <div className={s.label}>How is your mood?</div>
 
-                <div className={s.faceWrap}>
-
-                    {FACES.map(face => (
-                        <div
-                            className={classNames(s.face, {[s.active]: face.id === faceId})}
-                            key={face.title}
-                            onClick={this.setFace}
-                            data-id={face.id}
-                        >
-                            {face.title}
-                        </div>
-                    ))}
-                </div>
+        <div className={s.faceWrap}>
+          {FACES.map(face => (
+            <div
+              className={classNames(s.face, {[s.active]: face.id === faceId})}
+              key={face.title}
+              onClick={this.setFace}
+              data-id={face.id}
+            >
+              {face.title}
             </div>
-        );
-    }
+          ))}
+        </div>
+      </div>
+    );
+  }
 }
 
 export const mapStateToProps = (store: ApplicationStoreType) => ({
-    recordForm: store.recordForm,
+  recordForm: store.recordForm,
 });
 
 export const mapDispatchToProps = {
-    setFace,
+  setFace,
 };
 
 export const FacePickerConnected = connect(
-    mapStateToProps,
-    mapDispatchToProps,
+  mapStateToProps,
+  mapDispatchToProps,
 )(FacePicker);

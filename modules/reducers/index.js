@@ -8,8 +8,8 @@ import {route} from './route/route';
 import {recordForm} from './recordForm';
 
 const reducers = {
-    route,
-    recordForm,
+  route,
+  recordForm,
 };
 
 export type ReducersType = typeof reducers;

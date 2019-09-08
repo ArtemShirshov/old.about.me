@@ -14,40 +14,44 @@ type PropsType = {};
  * @return {Node} - Element
  */
 export class RecordComment extends PureComponent<PropsType> {
-    setComment = event => {
-        const {value} = event.currentTarget;
+  setComment = event => {
+    const {value} = event.currentTarget;
 
-        this.props.setComment(value);
-    };
+    this.props.setComment(value);
+  };
 
-    /**
-     * Render jsx to html
-     *
-     * @returns {Node} Rendered react component
-     */
-    render(): Node {
-        const {comment} = this.props.recordForm;
+  /**
+   * Render jsx to html
+   *
+   * @returns {Node} Rendered react component
+   */
+  render(): Node {
+    const {comment} = this.props.recordForm;
 
-        return (
-            <div className={s.wrap}>
-                <label>
-                    <div className={s.label}>What's new?</div>
-                    <textarea className={s.textarea} value={comment} onChange={this.setComment} />
-                </label>
-            </div>
-        );
-    }
+    return (
+      <div className={s.wrap}>
+        <label>
+          <div className={s.label}>What's new?</div>
+          <textarea
+            className={s.textarea}
+            value={comment}
+            onChange={this.setComment}
+          />
+        </label>
+      </div>
+    );
+  }
 }
 
 export const mapStateToProps = (store: ApplicationStoreType) => ({
-    recordForm: store.recordForm,
+  recordForm: store.recordForm,
 });
 
 export const mapDispatchToProps = {
-    setComment,
+  setComment,
 };
 
 export const RecordCommentConnected = connect(
-    mapStateToProps,
-    mapDispatchToProps,
+  mapStateToProps,
+  mapDispatchToProps,
 )(RecordComment);

@@ -8,7 +8,10 @@ const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
 const APP_ENV = JSON.stringify(process.env.APP_ENV);
 const path = require('path');
 
+const packageObj = require('./package');
 const loaders = require('./webpack/loaders');
+
+const vendorPackageList = Object.keys(packageObj.dependencies);
 
 module.exports = {
     mode: 'production',
@@ -41,21 +44,7 @@ module.exports = {
     ],
     entry: {
         'bundle.min': './modules/index',
-        'vendor.bundle': [
-            'react',
-            'react-dom',
-            'redux',
-            'react-redux',
-            'redux-axios-middleware',
-            'axios',
-            'react-animate-height',
-            'react-slick',
-            'react-sticky',
-            'jsonp',
-            'rc-dialog',
-            'rc-tooltip',
-            'redux-saga',
-        ],
+        'vendor.bundle': vendorPackageList,
     },
     output: {
         path: path.join(__dirname, 'src'),
@@ -68,10 +57,14 @@ module.exports = {
         minimizer: [new TerserPlugin({parallel: true})],
         splitChunks: {
             cacheGroups: {
+                chunks: 'all',
                 default: false,
                 'bundle.min': false,
                 'vendor.bundle': false,
             },
         },
+    },
+    node: {
+        fs: 'empty',
     },
 };

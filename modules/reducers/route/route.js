@@ -4,12 +4,12 @@ import {createActions, handleActions, type ActionType} from 'redux-actions';
 import type {PageType, RouteType} from './routeType';
 
 export const defaultState = {
-    page: '',
-    params: {},
+  page: '',
+  params: {},
 };
 
 export const {setPage} = createActions({
-    SET_PAGE: (pageInfo: PageType): PageType => pageInfo,
+  SET_PAGE: (pageInfo: PageType): PageType => pageInfo,
 });
 
 /**
@@ -18,10 +18,13 @@ export const {setPage} = createActions({
  * @returns {RouteType} state New state
  */
 export const route = handleActions(
-    {
-        [setPage]: (state: PageType, {payload}: ActionType<typeof setPage>): PageType => ({
-            ...payload,
-        }),
-    },
-    defaultState,
+  {
+    [setPage]: (
+      state: PageType,
+      {payload}: ActionType<typeof setPage>,
+    ): PageType => ({
+      ...payload,
+    }),
+  },
+  defaultState,
 );

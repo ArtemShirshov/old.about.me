@@ -17,61 +17,63 @@ type PropsType = {};
  * @return {Node} - Element
  */
 export class DealPicker extends Component<PropsType> {
-    state = {
-        deals: [],
-    };
+  state = {
+    deals: [],
+  };
 
-    setDeal = event => {
-        const {deals} = this.state;
-        const id = Number(event.currentTarget.dataset.id);
+  setDeal = event => {
+    const {deals} = this.state;
+    const id = Number(event.currentTarget.dataset.id);
 
-        if (deals.includes(id)) {
-            const newDeals = arrayRemove(deals, id);
-            this.props.setDeals(newDeals);
-        } else {
-            deals.push(id);
-            this.props.setDeals(deals);
-        }
-    };
-
-    /**
-     * Render jsx to html
-     *
-     * @returns {Node} Rendered react component
-     */
-    render(): Node {
-        const {deals} = this.props.recordForm;
-
-        return (
-            <div className={s.wrap}>
-                <div className={s.label}>What did you do today?</div>
-
-                <div className={s.dealWrap}>
-                    {ACTIVITY.map(deal => (
-                        <div
-                            className={classNames(s.deal, {[s.active]: deals.includes(deal.id)})}
-                            key={deal.title}
-                            onClick={this.setDeal}
-                            data-id={deal.id}
-                        >
-                            {deal.title}
-                        </div>
-                    ))}
-                </div>
-            </div>
-        );
+    if (deals.includes(id)) {
+      const newDeals = arrayRemove(deals, id);
+      this.props.setDeals(newDeals);
+    } else {
+      deals.push(id);
+      this.props.setDeals(deals);
     }
+  };
+
+  /**
+   * Render jsx to html
+   *
+   * @returns {Node} Rendered react component
+   */
+  render(): Node {
+    const {deals} = this.props.recordForm;
+
+    return (
+      <div className={s.wrap}>
+        <div className={s.label}>What did you do today?</div>
+
+        <div className={s.dealWrap}>
+          {ACTIVITY.map(deal => (
+            <div
+              className={classNames(s.deal, {
+                [s.active]: deals.includes(deal.id),
+              })}
+              key={deal.title}
+              onClick={this.setDeal}
+              data-id={deal.id}
+            >
+              {deal.title}
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
 }
 
 export const mapStateToProps = (store: ApplicationStoreType) => ({
-    recordForm: store.recordForm,
+  recordForm: store.recordForm,
 });
 
 export const mapDispatchToProps = {
-    setDeals,
+  setDeals,
 };
 
 export const DealPickerConnected = connect(
-    mapStateToProps,
-    mapDispatchToProps,
+  mapStateToProps,
+  mapDispatchToProps,
 )(DealPicker);

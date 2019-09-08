@@ -5,12 +5,12 @@ import {ApplicationRouter} from './router';
 
 jest.mock('react-redux', () => ({Provider: 'Provider'}));
 jest.mock('containers/pagesRouter/pagesRouter', () => ({
-    PagesRouterConnected: 'PagesRouterConnected',
+  PagesRouterConnected: 'PagesRouterConnected',
 }));
 
 describe('<ApplicationRouter />', () => {
-    it('should render ApplicationRouter page ', () => {
-        const tree = renderer.create(<ApplicationRouter />).toJSON();
-        expect(tree).toMatchSnapshot();
-    });
+  it('should render ApplicationRouter page ', () => {
+    const tree = renderer.create(<ApplicationRouter />).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
 });

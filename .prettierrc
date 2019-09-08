@@ -1,8 +1,8 @@
 {
   "singleQuote": true,
   "parser": "flow",
-  "tabWidth": 4,
+  "tabWidth": 2,
   "bracketSpacing": false,
-  "printWidth": 100,
+  "printWidth": 80,
   "trailingComma": "all"
 }

@@ -1,11 +1,11 @@
 // @flow
 
 export const arrayRemove = (array, value) => {
-    const idx = array.indexOf(value);
+  const idx = array.indexOf(value);
 
-    if (idx !== -1) {
-        array.splice(idx, 1);
-    }
+  if (idx !== -1) {
+    array.splice(idx, 1);
+  }
 
-    return array;
+  return array;
 };

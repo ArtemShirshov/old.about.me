@@ -8,10 +8,9 @@ import {FacePickerConnected} from 'components/facePicker/facePicker';
 import {RecordCommentConnected} from 'components/recordComment/recordComment';
 import {DealPickerConnected} from 'components/dealPicker/dealPicker';
 
-import s from './recordForm.scss'
+import s from './recordForm.scss';
 
-type PropsType = {
-};
+type PropsType = {};
 
 /**
  * Main container for home page
@@ -19,33 +18,31 @@ type PropsType = {
  * @return {Node} - Element
  */
 export class RecordForm extends PureComponent<PropsType> {
-    /**
-     * Render jsx to html
-     *
-     * @returns {Node} Rendered react component
-     */
-    render(): Node {
-        return (
-            <div className={s.wrap}>
+  /**
+   * Render jsx to html
+   *
+   * @returns {Node} Rendered react component
+   */
+  render(): Node {
+    return (
+      <div className={s.wrap}>
+        <FacePickerConnected />
+        <RecordCommentConnected />
+        <DealPickerConnected />
 
-                <FacePickerConnected />
-                <RecordCommentConnected />
-                <DealPickerConnected />
-
-                <Button>Send</Button>
-            </div>
-        );
-    }
+        <Button>Send</Button>
+      </div>
+    );
+  }
 }
 
-export const mapStateToProps = (store: ApplicationStoreType) => ({
-});
+export const mapStateToProps = (store: ApplicationStoreType) => ({});
 
 export const mapDispatchToProps = {
-    fetchPostData
+  fetchPostData,
 };
 
 export const RecordFormConnected = connect(
-    mapStateToProps,
-    mapDispatchToProps,
+  mapStateToProps,
+  mapDispatchToProps,
 )(RecordForm);

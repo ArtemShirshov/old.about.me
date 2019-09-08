@@ -4,30 +4,30 @@ import renderer from 'react-test-renderer';
 import {PagesRouter} from './pagesRouter';
 
 jest.mock('@reach/router', () => ({
-    Router: 'Router',
-    Match: () => 'Match',
+  Router: 'Router',
+  Match: () => 'Match',
 }));
 
 jest.mock('containers/dynamicPage/dynamicPage', () => ({
-    DynamicPageConnected: 'DynamicPageConnected',
+  DynamicPageConnected: 'DynamicPageConnected',
 }));
 jest.mock('constants/routes/routes', () => ({
-    StaticRoutes: [
-        {
-            path: '/',
-            page: 'home',
-            component: 'HomeConnected',
-        },
-    ],
+  StaticRoutes: [
+    {
+      path: '/',
+      page: 'home',
+      component: 'HomeConnected',
+    },
+  ],
 }));
 
 describe('<PagesRouter />', () => {
-    const props = {
-        setPage: () => {},
-    };
+  const props = {
+    setPage: () => {},
+  };
 
-    it('should render pagesRouter page ', () => {
-        const tree = renderer.create(<PagesRouter {...props} />).toJSON();
-        expect(tree).toMatchSnapshot();
-    });
+  it('should render pagesRouter page ', () => {
+    const tree = renderer.create(<PagesRouter {...props} />).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
 });

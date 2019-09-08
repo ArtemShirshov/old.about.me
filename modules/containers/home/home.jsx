@@ -2,13 +2,12 @@
 import React, {PureComponent, type Node, Fragment} from 'react';
 import {connect} from 'react-redux';
 
-import {fetchPostData} from 'reducers/post/post'
-import {RecordFormConnected} from 'components/recordForm/recordForm'
+import {fetchPostData} from 'reducers/post/post';
+import {RecordFormConnected} from 'components/recordForm/recordForm';
 
-import s from './home.scss'
+import s from './home.scss';
 
-type PropsType = {
-};
+type PropsType = {};
 
 /**
  * Main container for home page
@@ -16,32 +15,31 @@ type PropsType = {
  * @return {Node} - Element
  */
 export class Home extends PureComponent<PropsType> {
-    componentDidMount() {
-        this.props.fetchPostData();
-    }
+  componentDidMount() {
+    this.props.fetchPostData();
+  }
 
-    /**
-     * Render jsx to html
-     *
-     * @returns {Node} Rendered react component
-     */
-    render(): Node {
-        return (
-            <div className={s.wrap}>
-                <RecordFormConnected />
-            </div>
-        );
-    }
+  /**
+   * Render jsx to html
+   *
+   * @returns {Node} Rendered react component
+   */
+  render(): Node {
+    return (
+      <div className={s.wrap}>
+        <RecordFormConnected />
+      </div>
+    );
+  }
 }
 
-export const mapStateToProps = (store: ApplicationStoreType) => ({
-});
+export const mapStateToProps = (store: ApplicationStoreType) => ({});
 
 export const mapDispatchToProps = {
-    fetchPostData
+  fetchPostData,
 };
 
 export const HomeConnected = connect(
-    mapStateToProps,
-    mapDispatchToProps,
+  mapStateToProps,
+  mapDispatchToProps,
 )(Home);
